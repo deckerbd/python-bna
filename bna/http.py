@@ -38,7 +38,7 @@ def get_server_response(data, host, path):
 	response = conn.getresponse()
 
 	if response.status != 200:
-		print(json.dumps(response, default=lambda o: o.__dict__))
+		print(dumps(response, default=lambda o: o.__dict__))
 		raise HTTPError("%s returned status %i" % (host, response.status), response)
 
 	ret = response.read()
