@@ -5,7 +5,7 @@ from http.client import HTTPConnection
 from time import time
 from .crypto import decrypt, encrypt, get_one_time_pad, restore_code_to_bytes
 from .utils import normalize_serial
-from flask.ext.jsonpify import jsonpify
+from json import dumps
 
 
 ENROLL_HOSTS = {
@@ -38,7 +38,7 @@ def get_server_response(data, host, path):
 	response = conn.getresponse()
 
 	if response.status != 200:
-		print (jsonpify(response))
+		print(json.dumps(response, default=lambda o: o.__dict__))
 		raise HTTPError("%s returned status %i" % (host, response.status), response)
 
 	ret = response.read()
