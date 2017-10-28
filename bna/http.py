@@ -37,6 +37,7 @@ def get_server_response(data, host, path):
 	response = conn.getresponse()
 
 	if response.status != 200:
+		print (response)
 		raise HTTPError("%s returned status %i" % (host, response.status), response)
 
 	ret = response.read()
